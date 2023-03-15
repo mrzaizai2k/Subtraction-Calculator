@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Subtraction Calculator</h1>
+  <form>
+    <label for="a">Number A:</label>
+    <input type="number" name="a" id="a">
+    <br>
+    <label for="b">Number B:</label>
+    <input type="number" name="b" id="b">
+    <br>
+    <button type="button" onclick="calculateSubtraction()">Calculate</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    function calculateSubtraction() {
+      var a = $('#a').val();
+      var b = $('#b').val();
+      $.getJSON('http://localhost:5000/subtract', {a: a, b: b}, function(data) {
+        $('#result').text('Result: ' + data.result);
+      });
+    }
+  </script>
+</body>
+</html>
