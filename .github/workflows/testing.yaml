@@ -1,0 +1,17 @@
+name: Run-whole-flask-app
+run-name: ${{ github.actor }} is running flask app
+on: [push]
+jobs:
+  Run-flask-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - uses: iterative/setup-cml@v1
+      - name: runapp
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python app.py
+          
